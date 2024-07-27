@@ -1,11 +1,11 @@
-//Jared Ch·vez Pozo - 20213283
+//Jared Ch√°vez Pozo - 20213283
 
 #include <iostream>
-#define N 5  // Define el tamaÒo del tablero como 4
+#define N 5  // Define el tama√±o del tablero como 4
 
 using namespace std;
 
-// FunciÛn que verifica si es v·lido colocar una reina en la posiciÛn (fila, columna)
+// Funci√≥n que verifica si es v√°lido colocar una reina en la posici√≥n (fila, columna)
 int esPosicionValida(int tablero[][N], int fila, int columna) {
     // Verificar la fila hacia la izquierda
     for (int i = 0; i < columna; i++)
@@ -20,11 +20,11 @@ int esPosicionValida(int tablero[][N], int fila, int columna) {
     for (i = fila, j = columna; i >= 0 && j < N; i--, j++)
         if (tablero[i][j]) return 0;
 
-    // Si no hay conflictos, la posiciÛn es v·lida
+    // Si no hay conflictos, la posici√≥n es v√°lida
     return 1;
 }
 
-// FunciÛn para imprimir el tablero
+// Funci√≥n para imprimir el tablero
 void imprimirTablero(int tablero[][N]) {
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
@@ -34,7 +34,7 @@ void imprimirTablero(int tablero[][N]) {
     }
 }
 
-// FunciÛn que resuelve el problema de las N reinas utilizando backtracking
+// Funci√≥n que resuelve el problema de las N reinas utilizando backtracking
 int resolverNReinas(int tablero[][N], int columna) {
     // Si todas las reinas han sido colocadas, retornar verdadero
     if (columna == N)
@@ -42,14 +42,14 @@ int resolverNReinas(int tablero[][N], int columna) {
 
     // Intentar colocar una reina en cada fila de la columna actual
     for (int fila = 0; fila < N; fila++) {
-        // Verificar si la posiciÛn actual es v·lida
+        // Verificar si la posici√≥n actual es v√°lida
         if (esPosicionValida(tablero, fila, columna)) {
-            // Colocar la reina en la posiciÛn actual
+            // Colocar la reina en la posici√≥n actual
             tablero[fila][columna] = 1;
             // Llamar recursivamente para colocar el resto de las reinas
             if (resolverNReinas(tablero, columna + 1))
                 return 1;
-            // Si no lleva a una soluciÛn, remover la reina
+            // Si no lleva a una soluci√≥n, remover la reina
             tablero[fila][columna] = 0;
         }
     }
@@ -63,16 +63,16 @@ int main() {
                           {0, 0, 0, 0, 0},
                           {0, 0, 0, 0, 0},
                           {0, 0, 0, 0, 0},
-						  {0, 0, 0, 0, 0} };
+			  {0, 0, 0, 0, 0} };
 
     // Intentar resolver el problema de las N reinas
     if (resolverNReinas(tablero, 0)) {
-        // Si se encuentra una soluciÛn, imprimir el tablero
-        cout << "SoluciÛn encontrada:" << endl;
+        // Si se encuentra una soluci√≥n, imprimir el tablero
+        cout << "Soluci√≥n encontrada:" << endl;
         imprimirTablero(tablero);
     } else {
-        // Si no se encuentra una soluciÛn, imprimir "No se encontrÛ soluciÛn"
-        cout << "No se encontrÛ soluciÛn" << endl;
+        // Si no se encuentra una soluci√≥n, imprimir "No se encontr√≥ soluci√≥n"
+        cout << "No se encontr√≥ soluci√≥n" << endl;
     }
 
     return 0;
